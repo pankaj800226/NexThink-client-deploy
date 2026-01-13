@@ -146,7 +146,6 @@ const TodoEdit = () => {
                         <TextField
                             value={formData.category}
                             onChange={handleChange}
-
                             fullWidth select label="Category" name="category" sx={inputStyle}>
                             <MenuItem value="Work">Work</MenuItem>
                             <MenuItem value="Personal">Personal</MenuItem>
