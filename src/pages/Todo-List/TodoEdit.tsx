@@ -81,7 +81,7 @@ const TodoEdit = () => {
 
             toast.success("Todo updated successfully")
             navigate('/managetodo')
-            
+
         } catch (error) {
             console.log(error);
             toast.error("Error while editing todo")
@@ -91,7 +91,7 @@ const TodoEdit = () => {
         }
     }
 
-    if (error) return <ApiError error={error}/>
+    if (error) return <ApiError error={error} />
     if (loading) return <Loading />
 
 
@@ -166,10 +166,11 @@ const TodoEdit = () => {
 
                         <TextField
                             value={formData.status}
-                            fullWidth select label="Status" name="Status" sx={inputStyle}>
+                            onChange={handleChange}
+                            fullWidth select label="Status" name="status" sx={inputStyle}>
                             <MenuItem value="pending">Pending</MenuItem>
                             <MenuItem value="inprogress">In Progress</MenuItem>
-                            <MenuItem value="done">Done</MenuItem>
+                            <MenuItem value="completed">completed</MenuItem>
                         </TextField>
 
                         <Button

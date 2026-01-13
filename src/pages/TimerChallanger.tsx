@@ -3,7 +3,6 @@ const TimerChallanger = () => {
   return (
     <div>TimerChallanger
 
-      <button>Send</button>
     </div>
   )
 }

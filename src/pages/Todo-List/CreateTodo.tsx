@@ -126,10 +126,7 @@ const CreateTodo = () => {
                                 value={formData.title}
                                 onChange={handleChange}
                                 sx={inputStyle} />
-                            <TextField fullWidth multiline rows={3} label="Description" name="description"
-                                value={formData.description}
-                                onChange={handleChange}
-                                sx={inputStyle} />
+                        
                             <TextField fullWidth type="number" label="Price (optional)" name="price"
                                 value={formData.price}
                                 onChange={handleChange}
@@ -162,6 +159,14 @@ const CreateTodo = () => {
                                 <MenuItem value="inprogress">In Progress</MenuItem>
                                 <MenuItem value="completed">completed</MenuItem>
                             </TextField>
+
+                            <TextField fullWidth multiline rows={9} label="Description" name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                sx={inputStyle} 
+                                >
+                                    
+                                </TextField>
 
                             {/* Animate Add Todo Button */}
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { ArrowRightAlt } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+
 const Banner = () => {
     return (
         <div className="banner_wrapper">
@@ -23,7 +24,7 @@ const Banner = () => {
                         viewport={{ once: false, amount: 0.4 }}
                         transition={{ delay: 0.2 }}
                     >
-                        Boost Your Focus
+                        Think Ahead.
                     </motion.h1>
 
                     <motion.h1
@@ -33,7 +34,7 @@ const Banner = () => {
                         viewport={{ once: false, amount: 0.4 }}
                         transition={{ delay: 0.4 }}
                     >
-                        Master Your Time
+                        Execute Smarter with NextThink
                     </motion.h1>
                 </motion.span>
 
@@ -43,8 +44,9 @@ const Banner = () => {
                     viewport={{ once: false, amount: 0.4 }}
                     transition={{ delay: 0.6 }}
                 >
-                    Build focus your way. Plan tasks, manage time, and track your progress
-                    with a productivity system made for real work.
+                    NextThink helps you turn ideas into action.
+                    Plan tasks, manage time, and stay focused with a clean,
+                    distraction-free productivity system built for real progress.
                 </motion.p>
 
                 <motion.div
@@ -55,8 +57,11 @@ const Banner = () => {
                     transition={{ delay: 0.8 }}
                 >
                     <Link to="/dashboard">
-                        <Button endIcon={<ArrowRightAlt />} className="start_btn">
-                            Start
+                        <Button
+                            endIcon={<ArrowRightAlt />}
+                            className="start_btn"
+                        >
+                            Enter NextThink
                         </Button>
                     </Link>
                 </motion.div>
