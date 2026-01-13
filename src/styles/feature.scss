@@ -1,0 +1,124 @@
+/* ===============================
+   Variables
+================================ */
+$glass-bg: rgba(21, 26, 31, 0.75);
+$border-light: rgba(255, 255, 255, 0.08);
+$text-muted: rgba(255, 255, 255, 0.7);
+$primary-glow: rgba(106, 90, 249, 0.35);
+
+/* ===============================
+   Feature Section
+================================ */
+.feature_wrapper {
+  position: relative;
+  padding: 120px 8%;
+  overflow: hidden;
+
+  .banner_header {
+    text-align: center;
+    font-size: 42px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 60px;
+  }
+
+  /* Background blobs */
+  .feature_blob {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: 0.35;
+    z-index: 0;
+
+    &.blob_a {
+      background: #6a5af9;
+      top: 50px;
+      left: -100px;
+    }
+
+    &.blob_b {
+      background: #00e5ff;
+      bottom: 0;
+      right: -120px;
+    }
+  }
+}
+
+/* ===============================
+   Feature Grid
+================================ */
+.feature_container {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+
+  .feature_card {
+    background: $glass-bg;
+    backdrop-filter: blur(14px);
+    border-radius: 18px;
+    padding: 30px 22px;
+    text-align: center;
+    border: 1px solid $border-light;
+    transition: 0.35s ease;
+    cursor: default;
+
+    &:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px $primary-glow;
+    }
+
+    .icon_circle {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      margin: 0 auto 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+
+      svg {
+        font-size: 28px;
+      }
+    }
+
+    p {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    span {
+      font-size: 14px;
+      color: $text-muted;
+      line-height: 1.5;
+    }
+  }
+}
+
+/* ===============================
+   Responsive
+================================ */
+@media (max-width: 1100px) {
+  .feature_container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 720px) {
+  .feature_container {
+    grid-template-columns: 1fr;
+  }
+
+  .feature_wrapper {
+    .banner_header {
+      font-size: 32px;
+    }
+  }
+}
