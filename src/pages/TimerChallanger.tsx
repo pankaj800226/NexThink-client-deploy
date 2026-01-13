@@ -2,7 +2,7 @@
 const TimerChallanger = () => {
   return (
     <div>
-      Time Challanger
+    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde deserunt at officia.
       
     </div>
   )
