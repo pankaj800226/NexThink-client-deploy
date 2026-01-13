@@ -1,9 +1,9 @@
 
 const TimerChallanger = () => {
   return (
-    <div>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde deserunt at officia.
-      
+    <div>TimerChallanger
+
+      <button>Ckick</button>
     </div>
   )
 }
