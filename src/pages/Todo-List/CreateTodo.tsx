@@ -1,4 +1,6 @@
 import Sidebar from "../../components/SideBar";
+// import EmojiPicker from 'emoji-picker-react'
+
 import {
     Box,
     Button,
@@ -8,6 +10,7 @@ import {
     Paper,
     CircularProgress
 } from "@mui/material";
+
 import { AddTask } from "@mui/icons-material";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
@@ -31,6 +34,11 @@ const CreateTodo = () => {
     const token = localStorage.getItem('TOKEN')
     const navigate = useNavigate()
     const [error, setError] = useState('')
+    // const [showEmoji, setShowEmoji] = useState(false);
+
+
+
+
 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -122,11 +130,13 @@ const CreateTodo = () => {
                                 Create New Todo
                             </Typography>
 
+                        
+                            {/* <EmojiPicker /> */}
                             <TextField fullWidth label="Title" name="title"
                                 value={formData.title}
                                 onChange={handleChange}
                                 sx={inputStyle} />
-                        
+
                             <TextField fullWidth type="number" label="Price (optional)" name="price"
                                 value={formData.price}
                                 onChange={handleChange}
@@ -163,10 +173,12 @@ const CreateTodo = () => {
                             <TextField fullWidth multiline rows={9} label="Description" name="description"
                                 value={formData.description}
                                 onChange={handleChange}
-                                sx={inputStyle} 
-                                >
-                                    
-                                </TextField>
+                                sx={inputStyle}
+                            >
+
+                            </TextField>
+
+
 
                             {/* Animate Add Todo Button */}
                             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>

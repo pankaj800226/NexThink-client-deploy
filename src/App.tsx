@@ -14,6 +14,8 @@ const ForgetPassword = React.lazy(() => import('./components/auth/ForgetPassword
 const OtpVerify = React.lazy(() => import('./components/auth/OtpVerify'))
 const UpdatePassword = React.lazy(() => import('./components/auth/UpdatePassword'))
 const TimerChallanger = React.lazy(() => import('./pages/TimerChallanger'))
+const Think_Drow = React.lazy(() => import('./pages/Think_Drow'))
+
 
 
 const Dashboard = React.lazy(() => import('./pages/Dashboard'))
@@ -26,7 +28,7 @@ const TodoEdit = React.lazy(() => import('./pages/Todo-List/TodoEdit'))
 const TodoDetails = React.lazy(() => import('./pages/Todo-List/TodoDetails'))
 
 {/* work shedular */ }
-const CreateShedular  = React.lazy(() => import('./pages/Work-Shedular/CreateShedular'))
+const CreateShedular = React.lazy(() => import('./pages/Work-Shedular/CreateShedular'))
 
 
 
@@ -39,10 +41,18 @@ import './styles/banner.scss'
 import './styles/feature.scss'
 import './styles/register.scss'
 import './styles/profile.scss'
+
+// task
 import './styles/Todo-list/manageTodo.scss'
 import './styles/Todo-list/todoDetails.scss'
+// time challanger
 import './styles/timechallange.scss'
+// work shedular
 import './styles/works-hedular/createShedular.scss'
+
+//think drow
+import './styles/think_drow.scss'
+
 
 
 const AppLayout = () => {
@@ -78,6 +88,7 @@ const AppLayout = () => {
           <Route element={<SaveRoute />}>
             <Route path='/' element={<Home />} />
             <Route path='/timechallaner' element={<TimerChallanger />} />
+            <Route path='/thinkdrow' element={<Think_Drow />} />
 
             {/*In dashboard all page will be here */}
             <Route path='/dashboard' element={<Dashboard />} />
@@ -102,7 +113,7 @@ const AppLayout = () => {
           position="bottom-right"
           reverseOrder={false}
         />
-      </Suspense>
+      </Suspense >
     </>
   )
 }

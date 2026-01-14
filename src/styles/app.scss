@@ -3,6 +3,13 @@
   padding: 0;
   box-sizing: border-box;
 }
+/* in App.css or your CSS file */
+
+.jodit-wysiwyg {
+  color: #000 !important;
+  background-color: #fff !important;
+}
+
 
 body {
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
