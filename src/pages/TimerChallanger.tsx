@@ -1,9 +1,7 @@
 
 const TimerChallanger = () => {
   return (
-    <div>TimerChallanger
-
-    </div>
+    <div>TimerChallanger</div>
   )
 }
 

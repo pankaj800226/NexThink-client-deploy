@@ -25,6 +25,9 @@ const ManageTodo = React.lazy(() => import('./pages/Todo-List/ManageTodo'))
 const TodoEdit = React.lazy(() => import('./pages/Todo-List/TodoEdit'))
 const TodoDetails = React.lazy(() => import('./pages/Todo-List/TodoDetails'))
 
+{/* work shedular */ }
+const CreateShedular  = React.lazy(() => import('./pages/Work-Shedular/CreateShedular'))
+
 
 
 
@@ -38,7 +41,8 @@ import './styles/register.scss'
 import './styles/profile.scss'
 import './styles/Todo-list/manageTodo.scss'
 import './styles/Todo-list/todoDetails.scss'
-
+import './styles/timechallange.scss'
+import './styles/works-hedular/createShedular.scss'
 
 
 const AppLayout = () => {
@@ -83,6 +87,9 @@ const AppLayout = () => {
             <Route path='/managetodo' element={<ManageTodo />} />
             <Route path='/todoEdit/:id' element={<TodoEdit />} />
             <Route path='/todoDetails/:id' element={<TodoDetails />} />
+
+            {/* work shedular */}
+            <Route path='/createshedular' element={<CreateShedular />} />
 
 
 

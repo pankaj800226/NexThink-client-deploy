@@ -24,12 +24,15 @@ const Header = () => {
 
     return (
         <header>
-            <div className='logo'>
-                <div>
-                    <Link to={'/'}>NexThink</Link>
-                </div>
+            {/* <div className='logo'> */}
+            <div>
+                <Link to={'/'}>
+                    <img width={55} src="logo.png" alt="" />
+                </Link>
 
             </div>
+
+            {/* </div> */}
 
 
             <nav>
