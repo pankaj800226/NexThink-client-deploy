@@ -59,7 +59,7 @@ import './styles/works-hedular/createShedular.scss'
 import './styles/think_drow.scss'
 
 // anzlyze
-import './styles/analyze/analyze.scss'
+import './styles/Analyze/analyze.scss'
 import './styles/Analyze/coverImg.scss'
 
 
