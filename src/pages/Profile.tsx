@@ -33,18 +33,28 @@ const Profile = () => {
   const [profile, setProfile] = useState<User | null>(null)
   const [error, setError] = useState('')
   const [loader, setLoader] = useState(false)
-
+  const [file, setFile] = useState<File | null>(null)
   const token = localStorage.getItem('TOKEN')
   const navigate = useNavigate()
+  const [btnLoader, setBtnLoader] = useState(false)
 
   const [formData, setFormData] = useState({
     username: "",
     email: "",
+    file: ""
   })
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
   }
+
+  const handleAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files[0]) {
+      const file = e.target.files[0];
+      setFile(file);
+    }
+  };
+
 
 
   useEffect(() => {
@@ -62,10 +72,12 @@ const Profile = () => {
         })
 
         setProfile(res.data)
+
         setFormData({
-          username: res.data.username,
-          email: res.data.email
-        })
+          username: res?.data.username,
+          email: res?.data.email,
+          file: ""
+        });
       } catch (error) {
         console.log(error);
         toast.error("Failed to fetch profile")
@@ -78,13 +90,21 @@ const Profile = () => {
     fetchProfile()
   }, [token, navigate])
 
+  // edit prifile
   const handleEditProfile = async () => {
+    const fd = new FormData()
+    fd.append('username', formData.username)
+    fd.append('email', formData.email)
+
+    if (file) fd.append('file', file)
+
     if (!token) {
       toast.error("You are not login")
       return navigate('/login')
     }
+    setBtnLoader(true)
     try {
-      const res = await axios.put(`${api}/api/user/editProfile`, formData, {
+      const res = await axios.put(`${api}/api/user/editProfile`, fd, {
         headers: { Authorization: `Bearer ${token}` }
       })
 
@@ -97,6 +117,8 @@ const Profile = () => {
       toast.error("Error updating profile")
       setError("Api Fetching Error")
 
+    } finally {
+      setBtnLoader(false)
     }
   }
 
@@ -149,18 +171,24 @@ const Profile = () => {
       </main>
 
       <Dialog
-        open={editDialogOpen} onClose={() => setEditDialogOpen(false)}
-        fullScreen={isMobile} fullWidth maxWidth="sm"
+        open={editDialogOpen}
+        onClose={() => setEditDialogOpen(false)}
+        fullScreen={isMobile}
+        fullWidth
+        maxWidth="sm"
+        disableRestoreFocus
+        disableEnforceFocus
       >
         <DialogTitle>Edit Profile</DialogTitle>
-        <DialogContent>
-          <Stack spacing={2} mt={1}>
+        <DialogContent >
+          <Stack  spacing={2} mt={1}>
             <TextField
               label="Username"
               name="username"
               fullWidth
               value={formData.username}
               onChange={handleChange}
+
             />
             <TextField
               label="Email"
@@ -169,11 +197,33 @@ const Profile = () => {
               value={formData.email}
               onChange={handleChange}
             />
+
+            <Button
+              fullWidth
+              component="label"
+              sx={{
+                mt: 2,
+                py: 1.2,
+                border: "1px dashed #0ff",
+                color: "#222",
+                fontWeight: "bold",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "rgba(0,255,255,0.08)"
+                }
+              }}
+            >
+              {file ? file.name : "Avatar"}
+              <input hidden type="file" accept="image/*" onChange={handleAvatarChange} />
+            </Button>
+
           </Stack>
         </DialogContent>
         <DialogActions>
           <Button onClick={() => setEditDialogOpen(false)}>Cancel</Button>
-          <Button variant="contained" onClick={handleEditProfile}>Update</Button>
+          <Button variant="contained" onClick={handleEditProfile}>
+            {btnLoader ? <Loading /> : "Update"}
+          </Button>
         </DialogActions>
       </Dialog>
     </div>

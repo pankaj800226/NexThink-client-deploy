@@ -30,6 +30,11 @@ const TodoDetails = React.lazy(() => import('./pages/Todo-List/TodoDetails'))
 {/* work shedular */ }
 const CreateShedular = React.lazy(() => import('./pages/Work-Shedular/CreateShedular'))
 
+// analyze
+const Analyze = React.lazy(() => import('./pages/Analyze/Analyze'))
+
+
+
 
 
 
@@ -53,6 +58,9 @@ import './styles/works-hedular/createShedular.scss'
 //think drow
 import './styles/think_drow.scss'
 
+// anzlyze
+import './styles/analyze/analyze.scss'
+import './styles/Analyze/coverImg.scss'
 
 
 const AppLayout = () => {
@@ -65,6 +73,7 @@ const AppLayout = () => {
     "/profile",
     "/todoEdit",
     "/todoDetails",
+    "/analyze",
   ];
 
   // dashboard route check
@@ -101,6 +110,9 @@ const AppLayout = () => {
 
             {/* work shedular */}
             <Route path='/createshedular' element={<CreateShedular />} />
+
+            {/* analyze */}
+            <Route path='/analyze' element={<Analyze />} />
 
 
 

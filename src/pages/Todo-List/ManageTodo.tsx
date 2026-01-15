@@ -40,7 +40,11 @@ const ManageTodo = () => {
             const res = await axios.get(`${api}/api/todo/getTask`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
+
+
+
             setAllTask(res.data.findTask);
+
         } catch (error) {
             console.log(error);
             setError("Api Fetching Error");
@@ -162,7 +166,7 @@ const ManageTodo = () => {
 
                                 {/* Render formatted description with line clamp */}
                                 <Typography className="description">
-                                    {todo.description.substring(0,100)}
+                                    {todo.description.substring(0, 100)}
                                 </Typography>
 
                                 <div className="todo_action">

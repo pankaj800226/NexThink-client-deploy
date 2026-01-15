@@ -6,7 +6,6 @@ import Sidebar from "../../components/SideBar"
 import toast from "react-hot-toast"
 import ApiError from "../../components/ApiError"
 import Loading from "../../components/Loading"
-import Think_Drow from "../Think_Drow"
 
 interface Todo {
     _id: string
@@ -113,8 +112,8 @@ const TodoDetails = () => {
 
                     </div>
                 )}
+                {/* <Think_Drow /> */}
 
-                <Think_Drow />
             </main>
         </div>
     )

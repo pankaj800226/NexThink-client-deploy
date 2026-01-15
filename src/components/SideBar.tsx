@@ -6,7 +6,9 @@ import { GiCaptainHatProfile } from "react-icons/gi";
 
 const menuItems = [
   { path: "/", label: "Home", icon: <HiHome /> },
-  { path: "/dashboard", label: "Dashboard", icon: <GiCaptainHatProfile /> },
+  { path: "/dashboard", label: "Profile", icon: <GiCaptainHatProfile /> },
+  { path: "/analyze", label: "Analyze", icon: <GiCaptainHatProfile /> },
+
 
 ];
 
