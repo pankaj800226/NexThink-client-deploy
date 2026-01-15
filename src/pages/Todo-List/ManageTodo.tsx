@@ -40,9 +40,6 @@ const ManageTodo = () => {
             const res = await axios.get(`${api}/api/todo/getTask`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
-
-
-
             setAllTask(res.data.findTask);
 
         } catch (error) {
