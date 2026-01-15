@@ -133,12 +133,6 @@ const TodoEdit = () => {
                             fullWidth label="Title" name="title" sx={inputStyle} />
 
                         <TextField
-                            value={formData.description}
-                            onChange={handleChange}
-
-                            fullWidth multiline rows={3} label="Description" name="description" sx={inputStyle} />
-
-                        <TextField
                             value={formData.price}
                             onChange={handleChange}
                             fullWidth type="number" label="Price" name="price" sx={inputStyle} />
@@ -171,6 +165,12 @@ const TodoEdit = () => {
                             <MenuItem value="inprogress">In Progress</MenuItem>
                             <MenuItem value="completed">completed</MenuItem>
                         </TextField>
+
+                        <TextField
+                            value={formData.description}
+                            onChange={handleChange}
+
+                            fullWidth multiline rows={9} label="Description" name="description" sx={inputStyle} />
 
                         <Button
                             fullWidth
