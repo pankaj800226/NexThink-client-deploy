@@ -41,7 +41,15 @@ const TodoDetails = () => {
         }
         fetchTodo()
     }, [id])
-    
+
+  
+
+    const priorityColor = (p: string) => {
+        if (p === "High") return "#ff4d4d";
+        if (p === "Medium") return "#ffb703";
+        return "#4ade80";
+    };
+
     if (error) return <ApiError error={error} />
     if (loader) return <Loading />
 
@@ -55,9 +63,7 @@ const TodoDetails = () => {
 
                         <div className="todo-header">
                             <h1>{todoDetails.title}</h1>
-                            <span className={`status ${todoDetails.status}`}>
-                                {todoDetails.status}
-                            </span>
+
                         </div>
 
                         <div className="todo-info-grid">
@@ -73,14 +79,28 @@ const TodoDetails = () => {
 
                             <div className="info-box">
                                 <p>Priority</p>
-                                <h3 className={`priority ${todoDetails.priority}`}>
+                                <h3
+                                    style={{
+                                        color: priorityColor(todoDetails.priority)
+
+                                    }}
+                                    className={` ${todoDetails.priority}`}>
                                     {todoDetails.priority}
                                 </h3>
                             </div>
 
                             <div className="info-box">
                                 <p>Status</p>
-                                <h3 className="category">{todoDetails.status}</h3>
+
+                                <span
+                                    style={{
+                                        color: priorityColor(todoDetails.status)
+
+                                    }}
+                                    className={`status ${todoDetails.status}`}>
+                                    {todoDetails.status}
+                                </span>
+                           
                             </div>
                         </div>
 
@@ -94,7 +114,7 @@ const TodoDetails = () => {
                     </div>
                 )}
 
-                <Think_Drow/>
+                <Think_Drow />
             </main>
         </div>
     )
