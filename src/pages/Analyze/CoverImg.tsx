@@ -1,4 +1,4 @@
-import { Delete, Edit, Upload } from "@mui/icons-material";
+import {Edit, Upload } from "@mui/icons-material";
 import { Button } from "@mui/material";
 import coverImg from "../../assets/cover.jpg";
 import { useEffect, useState } from "react";
@@ -84,21 +84,7 @@ const CoverImg = () => {
         handleUpload()
     }, [file])
 
-    const handleRemove = async (id:string) => {
-       
-        try {
-            await axios.delete(`${api}/api/coverImg/delete/cover/${id}`, {
-                headers: { Authorization: `Bearer ${token}` }
-
-            })
-            toast.success("Cover removed");
-            setCovers(null)
-        } catch (error) {
-            console.log(error);
-            toast.error("error")
-
-        }
-    }
+  
 
 
     return (
@@ -123,12 +109,12 @@ const CoverImg = () => {
                     Edit
                 </Button>
 
-                <Button
-                    onClick={handleRemove}
+                {/* <Button
+                    onClick={()=>handleRemove(covers._id)}
                     className="cover-btn delete" >
                     <Delete fontSize="small" />
                     Remove
-                </Button>
+                </Button> */}
             </div>
         </div>
     );
