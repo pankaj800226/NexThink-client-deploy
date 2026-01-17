@@ -40,6 +40,7 @@ const Analyze = React.lazy(() => import('./pages/Analyze/Analyze'))
 
 // style configration
 import './styles/app.scss'
+import './styles/loading.scss'
 import './styles/sidebaar.scss'
 import './styles/header.scss'
 import './styles/banner.scss'

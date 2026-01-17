@@ -16,6 +16,8 @@ import {
   CartesianGrid
 } from "recharts";
 
+import { motion } from "framer-motion"; // ✅ import framer-motion
+
 type Task = {
   _id: string;
   title: string;
@@ -70,48 +72,74 @@ const ManageTodo = () => {
   if (loader) return <Loading />;
   if (error) return <ApiError error={error} />;
 
+  // Framer Motion Variants
+  const containerVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { staggerChildren: 0.2, duration: 0.6 }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+  };
+
+  const progressVariants = {
+    hidden: { width: "0%" },
+    visible: { width: `${progressPercent}%`, transition: { duration: 1 } }
+  };
+
   return (
     <div className="dashboard_container">
       <Sidebar />
 
-      <main>
+      <motion.main
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
         <CoverImg />
 
-        <div className="analyze_container">
+        <motion.div className="analyze_container" variants={containerVariants}>
 
           {/* STAT CARDS */}
-          <div className="stats_card">
+          <motion.div className="stats_card" variants={cardVariants}>
             <h2>Total Tasks</h2>
             <p>{allTask.length}</p>
-          </div>
+          </motion.div>
 
-          <div className="stats_card completed">
+          <motion.div className="stats_card completed" variants={cardVariants}>
             <h2>Completed</h2>
             <p>{completedCount}</p>
-          </div>
+          </motion.div>
 
-          <div className="stats_card pending">
+          <motion.div className="stats_card pending" variants={cardVariants}>
             <h2>Pending</h2>
             <p>{pendingCount}</p>
-          </div>
+          </motion.div>
 
           {/* PROGRESS BAR */}
-          <div className="progress_card">
+          <motion.div className="progress_card" variants={cardVariants}>
             <div className="progress_header">
               <h3>Task Progress</h3>
               <span>{progressPercent}%</span>
             </div>
 
             <div className="progress_bar">
-              <div
+              <motion.div
                 className="progress_fill"
-                style={{ width: `${progressPercent}%` }}
+                initial="hidden"
+                animate="visible"
+                variants={progressVariants}
               />
             </div>
-          </div>
+          </motion.div>
 
           {/* LINE CHART */}
-          <div className="chart_card">
+          <motion.div className="chart_card" variants={cardVariants}>
             <h3>Task Status Trend</h3>
 
             <ResponsiveContainer width="100%" height={260}>
@@ -136,10 +164,10 @@ const ManageTodo = () => {
                 />
               </LineChart>
             </ResponsiveContainer>
-          </div>
+          </motion.div>
 
-        </div>
-      </main>
+        </motion.div>
+      </motion.main>
     </div>
   );
 };

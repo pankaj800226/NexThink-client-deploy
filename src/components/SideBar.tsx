@@ -3,11 +3,13 @@ import { Link, useLocation } from "react-router-dom";
 import { HiHome, HiMenuAlt4 } from "react-icons/hi";
 import { Button } from "@mui/material";
 import { GiCaptainHatProfile } from "react-icons/gi";
+import DataExplorationIcon from '@mui/icons-material/DataExploration';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
 
 const menuItems = [
   { path: "/", label: "Home", icon: <HiHome /> },
   { path: "/dashboard", label: "Profile", icon: <GiCaptainHatProfile /> },
-  { path: "/analyze", label: "Analyze", icon: <GiCaptainHatProfile /> },
+  // { path: "/analyze", label: "Analyze", icon: <GiCaptainHatProfile /> },
 
 
 ];
@@ -18,6 +20,7 @@ const Sidebar = () => {
   const [isMobile, setIsMobile] = useState(window.innerWidth < 1100);
   const [isOpen, setIsOpen] = useState(window.innerWidth >= 1100);
   const [todoIsOpen, setTodoIsOpen] = useState(false);
+  const [analyzeIsOpen, setAnalyzeIsOpen] = useState(false);
 
   useEffect(() => {
     const handleResize = () => {
@@ -66,6 +69,23 @@ const Sidebar = () => {
             </Link>
           ))}
 
+          {/* ANALYZE DROPDOWN */}
+          <div className={`todo_toggle ${analyzeIsOpen ? "open" : ""}`}>
+            <Button
+              fullWidth
+              className="todo_toggle_btn"
+              onClick={() => setAnalyzeIsOpen(!analyzeIsOpen)}
+            >
+              <EqualizerIcon/> Analyze
+              <span className="arrow">{analyzeIsOpen ? "▲" : "▼"}</span>
+            </Button>
+
+            <div className="submenu">
+              <Link to="/analyze"><DataExplorationIcon/> Todo Analyze</Link>
+              <Link to="/managetodo"><DataExplorationIcon/> Project Analyze</Link>
+            </div>
+          </div>
+
           {/* TODO DROPDOWN */}
           <div className={`todo_toggle ${todoIsOpen ? "open" : ""}`}>
             <Button
@@ -82,6 +102,8 @@ const Sidebar = () => {
               <Link to="/managetodo">📋 Manage Todo</Link>
             </div>
           </div>
+
+
         </nav>
       </aside>
 

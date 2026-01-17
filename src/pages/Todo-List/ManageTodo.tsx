@@ -28,31 +28,39 @@ const ManageTodo = () => {
     const [error, setError] = useState('');
     const [categorySelect, setCategorySelect] = useState('');
     const [prioritySelect, setPrioritySelect] = useState('');
+    const [page, setPage] = useState(1);
+    const [totalPage, setTotalPage] = useState(1);
 
     const debouncingSearch = useDebounce(search, 500);
 
-    const fetchTask = async () => {
-        const token = localStorage.getItem('TOKEN');
-        if (!token) return;
-
-        try {
-            setLoader(true);
-            const res = await axios.get(`${api}/api/todo/getTask`, {
-                headers: { Authorization: `Bearer ${token}` }
-            });
-            setAllTask(res.data.findTask);
-
-        } catch (error) {
-            console.log(error);
-            setError("Api Fetching Error");
-        } finally {
-            setLoader(false);
-        }
-    };
-
     useEffect(() => {
+        const controller = new AbortController()
+        console.log(controller);
+        
+        const fetchTask = async () => {
+            const token = localStorage.getItem('TOKEN');
+            if (!token) return;
+
+            try {
+                setLoader(true);
+                const res = await axios.get(`${api}/api/todo/getTask?page=${page}`, {
+                    headers: { Authorization: `Bearer ${token}` }
+                });
+
+                setAllTask(res.data.findTask);
+                
+                setTotalPage(res.data.totalPage);
+
+            } catch (error) {
+                console.log(error);
+                setError("Api Fetching Error");
+            } finally {
+                setLoader(false);
+            }
+        };
         fetchTask();
-    }, []);
+        return () => controller.abort()
+    }, [page]);
 
     const searchFilter = allTask.filter((task) =>
         task.title.toLowerCase().includes(debouncingSearch.toLowerCase()) &&
@@ -195,6 +203,20 @@ const ManageTodo = () => {
                             </motion.div>
                         ))
                     )}
+                </div>
+                {/* // Pagination Controls */}
+                <div className="pagination_controls">
+                    <Button
+                        disabled={page === 1}
+                        onClick={() => setPage(p => p - 1)}
+                        variant="outlined"
+                    >Prev</Button>
+
+                    <Button
+                        disabled={page === totalPage}
+                        onClick={() => setPage(p => p + 1)}
+                        variant="outlined"
+                    >Next</Button>
                 </div>
             </main>
         </div>

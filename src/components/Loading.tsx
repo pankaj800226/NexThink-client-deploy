@@ -1,15 +1,10 @@
-
+import logo from '../assets/logo.png'
 const Loading = () => {
   return (
     <div className="loading_wrapper">
-      <div className="logo">
-        Bee<span>Focus</span>
-      </div>
-
-      <div className="loader">
-        <span></span>
-        <span></span>
-        <span></span>
+      <img src={logo} alt="Logo Loading" />
+      <div className="loader_bar">
+        <div className="loader_fill"></div>
       </div>
     </div>
   );

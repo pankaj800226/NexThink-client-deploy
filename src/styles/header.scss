@@ -35,6 +35,9 @@ header {
 
   nav {
     div {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
       p {
         background-color: rgba(255, 255, 255, 0.886);
         color: black;
