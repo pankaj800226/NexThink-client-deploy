@@ -84,13 +84,10 @@ const CoverImg = () => {
         handleUpload()
     }, [file])
 
-    const handleRemove = async () => {
-        if (!covers?._id) {
-            toast.error("No cover to delete");
-            return;
-        }
+    const handleRemove = async (id:string) => {
+       
         try {
-            await axios.delete(`${api}/api/coverImg/delete/cover/${covers.id}`, {
+            await axios.delete(`${api}/api/coverImg/delete/cover/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
 
             })
