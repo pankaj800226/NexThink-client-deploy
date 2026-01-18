@@ -1,4 +1,4 @@
-import { Add } from "@mui/icons-material";
+import { Add, Delete } from "@mui/icons-material";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { api } from "../../api/api";
@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 import { motion, AnimatePresence } from "framer-motion";
 import ApiError from "../../components/ApiError";
 import Loading from "../../components/Loading";
+import { Button } from "@mui/material";
 
 type Day = { checked: boolean; date: string };
 type Week = { weekNo: number; days: Day[] };
@@ -55,7 +56,6 @@ export default function HabitTracker() {
         };
 
         try {
-            // setBtnLoader(true)
             const res = await axios.post(
                 `${api}/api/shedular/create/shedular`,
                 newTask,
@@ -95,6 +95,20 @@ export default function HabitTracker() {
         }
     };
 
+    // delete shedular
+    const handleDelete = async (id: string) => {
+        try {
+            await axios.delete(`${api}/api/shedular/delete/shedular/${id}`)
+            setTasks((prev) => prev.filter((s) => s._id !== id))
+
+            toast.success("Sheduler Deleted")
+        } catch (error) {
+            console.log(error);
+            toast.error("error")
+
+        }
+    }
+
     if (error) return <ApiError error={error} />;
     if (loader) return <Loading />;
 
@@ -133,7 +147,21 @@ export default function HabitTracker() {
                             exit={{ opacity: 0, y: 20 }}
                             transition={{ duration: 0.3 }}
                         >
-                            <h2>{task.title}</h2>
+                            <div
+                                style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between"
+                                }}
+                            >
+                                <h2>{task.title}</h2>
+
+                                <Button onClick={() => handleDelete(task._id)}>
+                                    <Delete sx={{ color: "red" }} />
+                                </Button>
+
+                            </div>
+
                             <table className="habit-table">
                                 <thead>
                                     <tr>

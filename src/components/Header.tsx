@@ -39,7 +39,7 @@ const Header = () => {
                 {email ? (
                     <div>
                         {/* <MenuItem> */}
-                        <Link to={'/timechallaner'}>Challanger</Link>
+                        <Link to={'/timechallaner'}>Challange</Link>
                         <Link to={'/createshedular'}>Work Shedular</Link>
                         {/* </MenuItem> */}
                         <Button
